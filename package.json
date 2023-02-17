@@ -1,30 +1,41 @@
 {
   "private": true,
-  "author": "zhan fu <zhanfu@secusoft.cc>",
   "scripts": {
-    "dev": "max dev",
-    "build": "max build",
-    "format": "prettier --cache --write .",
-    "prepare": "husky install",
-    "postinstall": "max setup",
-    "setup": "max setup",
-    "start": "npm run dev"
+    "start": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi generate tmp",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
   },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-components": "^2.0.1",
-    "@umijs/max": "^4.0.51",
-    "antd": "^5.0.0"
+    "@ant-design/pro-layout": "^6.5.0",
+    "react": "17.x",
+    "react-dom": "17.x",
+    "umi": "^3.5.36",
+    "umi-request": "^1.4.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "eslint": "^8.34.0",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "prettier-plugin-organize-imports": "^2",
-    "prettier-plugin-packagejson": "^2",
-    "typescript": "^4.1.2"
+    "@types/react": "^17.0.0",
+    "@types/lodash": "^4.14.171",
+    "@types/react-dom": "^17.0.0",
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.5.36",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.0",
+    "typescript": "^4.1.2",
+    "yorkie": "^2.0.0"
   }
 }
